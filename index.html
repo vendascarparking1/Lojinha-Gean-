@@ -23,7 +23,7 @@ body{
 }
 
 h1,h2,h3{
-    color:blue;
+    color:#00aaff;
 }
 
 .menu,.submenu{
@@ -92,7 +92,7 @@ button:hover{
     height:250px;
     border-radius:20px;
     overflow:hidden;
-    cursor:zoom-in;
+    cursor:pointer;
 }
 
 #zoomOverlay{
@@ -114,7 +114,6 @@ button:hover{
     border-radius:15px;
 }
 
-/* 🔥 CARRINHO FLUTUANTE */
 #carrinhoFlutuante{
     position:fixed;
     bottom:20px;
@@ -130,7 +129,6 @@ button:hover{
     z-index:999999;
 }
 
-/* 🔥 POPUP CARRINHO */
 #carrinhoPopup{
     position:fixed;
     bottom:90px;
@@ -163,76 +161,119 @@ button:hover{
 <div class="container">
 
 <h1>🔥 Loja Oficial GEAN 🔥</h1>
-<h2>criado por 98 98166 6909</h2>
+<h2>criado por 98 98166-6909</h2>
 
 <!-- MENU -->
 <div id="main" class="menu">
-    <button onclick="abrir('golds')">💰 Golds</button>
-    <button onclick="abrir('carros')">🚗 Carros Pagos</button>
-    <button onclick="abrir('contas')">👤 Contas</button>
-    <button onclick="abrir('servicos')">⚙️ Serviços</button>
-    <button onclick="abrir('combo')">🎁 Combo</button>
-    <button onclick="abrir('lojinha')">🛒 lojinha no seu nome</button>
-    <button onclick="abrir('feedback')">💬 feedback</button>
+
+<button onclick="abrir('golds')">💰 Golds</button>
+
+<button onclick="abrir('carros')">🚗 Carros Pagos</button>
+
+<button onclick="abrir('contas')">👤 Contas</button>
+
+<button onclick="abrir('servicos')">⚙️ Serviços</button>
+
+<button onclick="abrir('combo')">🎁 Combo</button>
+
+<button onclick="abrir('lojinha')">🛒 Lojinha no seu nome</button>
+
+<button onclick="abrir('feedback')">💬 Feedback</button>
+
 </div>
 
 <!-- GOLDS -->
 <div id="golds" class="submenu" style="display:none;">
+
 <button onclick="adicionarCarrinho('10k Golds',1)">10k = R$1</button>
+
 <button onclick="adicionarCarrinho('20k Golds',2)">20k = R$2</button>
+
 <button onclick="adicionarCarrinho('30k Golds',3)">30k = R$3</button>
+
 <button onclick="adicionarCarrinho('40k Golds',4)">40k = R$4</button>
+
 <button onclick="adicionarCarrinho('50k Golds',5)">50k = R$5</button>
+
 <button onclick="adicionarCarrinho('60k Golds',6)">60k = R$6</button>
+
 <button onclick="adicionarCarrinho('250k Golds',7)">250k = R$7</button>
+
 <button onclick="adicionarCarrinho('500k Golds',8)">500k = R$8</button>
+
 <button class="voltar" onclick="voltar()">⬅ Voltar</button>
+
 </div>
 
 <!-- CARROS -->
 <div id="carros" class="submenu" style="display:none;">
+
 <button onclick="adicionarCarrinho('Motorhome Plot',3)">Motorhome Plot = R$3</button>
+
 <button onclick="adicionarCarrinho('SW4 Plot',3)">SW4 Plot = R$3</button>
+
 <button onclick="adicionarCarrinho('Jeep Gallard',3)">Jeep Gallard = R$3</button>
+
 <button onclick="adicionarCarrinho('La Ferrari',3)">La Ferrari = R$3</button>
+
 <button onclick="adicionarCarrinho('F650',3)">F650 = R$3</button>
+
 <button onclick="adicionarCarrinho('Carro Plot',1)">Carro Plot = R$1</button>
+
 <button class="voltar" onclick="voltar()">⬅ Voltar</button>
+
 </div>
 
 <!-- CONTAS -->
 <div id="contas" class="submenu" style="display:none;">
+
 <button onclick="adicionarCarrinho('Conta 1',5)">
-Conta 1<br>W16, Smook, 178 carros, 50M, 30k Golds<br>R$5
+Conta 1<br>
+W16, Smook, 178 carros, 50M, 30k Golds<br>
+R$5
 </button>
 
-<button onclick="adicionarCarrinho('Conta 2',12)">
-Conta 2<br>Completa + King Rank + carros raros<br>R$15
+<button onclick="adicionarCarrinho('Conta 2',15)">
+Conta 2<br>
+Completa + King Rank + carros raros<br>
+R$15
 </button>
 
 <button class="voltar" onclick="voltar()">⬅ Voltar</button>
+
 </div>
 
 <!-- SERVIÇOS -->
 <div id="servicos" class="submenu" style="display:none;">
-<button onclick="adicionarCarrinho('King Rank',5)">King Rank = R$5</button>
+
+<button onclick="adicionarCarrinho('King Rank',5)">
+King Rank = R$5
+</button>
+
 <button class="voltar" onclick="voltar()">⬅ Voltar</button>
+
 </div>
 
 <!-- LOJINHA -->
 <div id="lojinha" class="submenu" style="display:none;">
+
 <button onclick="adicionarCarrinho('Lojinha Personalizada',10)">
-lojinha no seu nome, foto de fundo, menu personalizado R$10
+Lojinha no seu nome + foto + menu personalizado = R$10
 </button>
+
 <button class="voltar" onclick="voltar()">⬅ Voltar</button>
+
 </div>
 
 <!-- COMBO -->
 <div id="combo" class="submenu" style="display:none;">
+
 <button onclick="adicionarCarrinho('Combo Completo',7)">
 Carro raro + King + 30k Golds = R$7
 </button>
+
 <button class="voltar" onclick="voltar()">⬅ Voltar</button>
+
 </div>
 
 <!-- FEEDBACK -->
@@ -241,8 +282,7 @@ Carro raro + King + 30k Golds = R$7
 <h2>⭐ Avaliações dos clientes</h2>
 
 <div style="background:#111;padding:12px;border-radius:15px;">
-🛡 Cada cliente possui um sistema de 🆔 único automático.<br>
-Isso impede feedback fake mesmo mudando o nome.
+🛡 Cada cliente possui um sistema de 🆔 único automático.
 </div>
 
 <br>
@@ -254,27 +294,35 @@ style="font-size:25px;color:gold;font-weight:bold;">
 
 <br>
 
-<!-- FOTO -->
-<div class="exemploFoto" onclick="abrirZoom('https://i.ibb.co/yFSLCKqB/IMG-20260514-235652.png')">
-    <img src="https://i.ibb.co/yFSLCKqB/IMG-20260514-235652.png"
-    style="width:100%;height:100%;object-fit:cover;">
+<div class="exemploFoto"
+onclick="abrirZoom('https://i.ibb.co/yFSLCKqB/IMG-20260514-235652.png')">
+
+<img src="https://i.ibb.co/yFSLCKqB/IMG-20260514-235652.png"
+style="width:100%;height:100%;object-fit:cover;">
+
 </div>
 
 <br>
 
-<!-- 👤 NOME FIXO -->
 <div id="areaNome"></div>
 
 <br>
 
 <select id="notaFeedback"
 style="width:100%;padding:15px;border-radius:15px;font-size:18px;">
+
 <option value="">⭐ Escolha as estrelas</option>
+
 <option value="1">⭐</option>
+
 <option value="2">⭐⭐</option>
+
 <option value="3">⭐⭐⭐</option>
+
 <option value="4">⭐⭐⭐⭐</option>
+
 <option value="5">⭐⭐⭐⭐⭐</option>
+
 </select>
 
 <br><br>
@@ -285,23 +333,24 @@ style="width:100%;height:120px;border-radius:15px;padding:10px;"></textarea>
 
 <br><br>
 
-<button onclick="enviarFeedback()" style="background:green;width:100%;">
+<button onclick="enviarFeedback()"
+style="background:green;width:100%;">
 Enviar feedback
 </button>
 
 <button class="voltar" onclick="voltar()">⬅ Voltar</button>
 
 <div id="listaFeedbacks"></div>
-</div>
 
 </div>
 
-<!-- 🔥 CARRINHO FLUTUANTE -->
+</div>
+
+<!-- CARRINHO -->
 <div id="carrinhoFlutuante" onclick="toggleCarrinho()">
 🛒 <span id="contador">0</span>
 </div>
 
-<!-- 🔥 POPUP DO CARRINHO -->
 <div id="carrinhoPopup">
 
 <h2>🛒 Seu Carrinho</h2>
@@ -322,22 +371,23 @@ Enviar feedback
 
 <!-- ZOOM -->
 <div id="zoomOverlay" onclick="fecharZoom()">
-    <img id="zoomImg">
+<img id="zoomImg">
 </div>
 
 <!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-<script>
-
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
+<!-- EMAILJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
 
+/* EMAILJS */
+emailjs.init("UqrpcgQiX9oJoh6K2");
+
+/* FIREBASE */
 const firebaseConfig = {
 
   apiKey: "AIzaSyBaFGdMHOy59fJshA-Hdr6V9e92rLa2dzU",
@@ -362,13 +412,10 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
 
-/* =========================
-   SCRIPT
-========================= */
-
+/* CARRINHO */
 let carrinho = [];
 
-/* ID ÚNICO */
+/* ID */
 let userID = localStorage.getItem("userID");
 
 if(!userID){
@@ -376,16 +423,17 @@ if(!userID){
     userID = crypto.randomUUID();
 
     localStorage.setItem("userID",userID);
-
 }
 
-/* NOME FIXO */
-let nomeUsuario = localStorage.getItem("nomeUsuario") || "";
+/* NOME */
+let nomeUsuario =
+localStorage.getItem("nomeUsuario") || "";
 
-/* MOSTRAR NOME FIXO */
+/* LOAD */
 window.onload = function(){
 
-    let areaNome = document.getElementById("areaNome");
+    let areaNome =
+    document.getElementById("areaNome");
 
     if(nomeUsuario){
 
@@ -464,6 +512,7 @@ function voltar(){
 
     document.querySelectorAll(".submenu")
     .forEach(m=>{
+
         m.style.display="none";
     });
 
@@ -477,6 +526,7 @@ function salvarNome(){
     document.getElementById("nomeInput").value;
 
     if(nome.trim()==""){
+
         alert("Digite um nome");
         return;
     }
@@ -551,20 +601,15 @@ function limparCarrinho(){
     atualizarCarrinho();
 }
 
-/* CARRINHO FLUTUANTE */
 function toggleCarrinho(){
 
     let popup =
     document.getElementById("carrinhoPopup");
 
-    if(popup.style.display=="block"){
-
-        popup.style.display="none";
-
-    }else{
-
-        popup.style.display="block";
-    }
+    popup.style.display =
+    popup.style.display=="block"
+    ? "none"
+    : "block";
 }
 
 /* COMPRAR */
@@ -573,7 +618,6 @@ function comprarTudo(){
     if(carrinho.length==0){
 
         alert("Carrinho vazio");
-
         return;
     }
 
@@ -606,7 +650,7 @@ function comprarTudo(){
     );
 }
 
-/* ENVIAR FEEDBACK */
+/* FEEDBACK */
 function enviarFeedback(){
 
     let podeAvaliar =
@@ -615,14 +659,12 @@ function enviarFeedback(){
     if(!nomeUsuario){
 
         alert("Salve seu nome primeiro");
-
         return;
     }
 
     if(!podeAvaliar){
 
         alert("Compre algo primeiro");
-
         return;
     }
 
@@ -635,14 +677,12 @@ function enviarFeedback(){
     if(estrelas==""){
 
         alert("Escolha as estrelas");
-
         return;
     }
 
     if(texto.trim()==""){
 
         alert("Digite algo");
-
         return;
     }
 
@@ -656,16 +696,26 @@ function enviarFeedback(){
 
     });
 
+    /* EMAIL */
+    emailjs.send(
+    "service_5wf3vf2",
+    "template_0qp2ixo",
+    {
+        nome: nomeUsuario,
+        estrelas: estrelas,
+        mensagem: texto,
+        id: userID.slice(0,6)
+    });
+
     localStorage.removeItem("podeAvaliar");
 
     document.getElementById("textoFeedback").value="";
-
     document.getElementById("notaFeedback").value="";
 
     alert("✔ Feedback enviado");
 }
 
-/* MOSTRAR FEEDBACKS ONLINE */
+/* MOSTRAR FEEDBACKS */
 function mostrarFeedbacks(){
 
     let area =
@@ -740,4 +790,23 @@ function mostrarFeedbacks(){
     });
 }
 
+/* ZOOM */
+function abrirZoom(img){
+
+    document.getElementById("zoomOverlay")
+    .style.display="flex";
+
+    document.getElementById("zoomImg")
+    .src=img;
+}
+
+function fecharZoom(){
+
+    document.getElementById("zoomOverlay")
+    .style.display="none";
+}
+
 </script>
+
+</body>
+</html>
