@@ -804,8 +804,14 @@ margin-top:10px;
 <script>
 
 /* EMAILJS */
-emailjs.init({
-    publicKey:"UqrpcgQiX9oJoh6K2"
+window.addEventListener("load", function(){
+
+    if(window.emailjs){
+
+        emailjs.init("UqrpcgQiX9oJoh6K2");
+
+    }
+
 });
 
 /* FIREBASE */
@@ -1199,6 +1205,4 @@ function enviarFeedback(){
     document.getElementById("textoFeedback").value;
 
     let estrelas =
-    document.getElementById("notaFeedback").value;
-
-    if(estrelas==""){
+ 
