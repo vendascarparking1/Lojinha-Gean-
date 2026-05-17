@@ -1205,4 +1205,84 @@ function enviarFeedback(){
     document.getElementById("textoFeedback").value;
 
     let estrelas =
- 
+            "⭐".repeat(f.estrelas);
+
+            area.innerHTML += `
+
+            <div style="
+            background:#1b1b1b;
+            border-radius:20px;
+            padding:15px;
+            margin-top:15px;
+            border:2px solid #A020F0;
+            ">
+
+            <b style="font-size:18px;">
+            👤 ${f.nome}
+            </b>
+
+            <br>
+
+            <small style="color:#00ff88;">
+            🆔 ${f.id.slice(0,6)}
+            </small>
+
+            <br><br>
+
+            <span style="
+            color:gold;
+            font-size:22px;
+            ">
+            ${estrelas}
+            </span>
+
+            <br><br>
+
+            <div style="
+            color:#ddd;
+            line-height:1.5;
+            ">
+            ${f.texto}
+            </div>
+
+            <br>
+
+            <small style="color:#999;">
+            ${f.data}
+            </small>
+
+            </div>
+
+            `;
+        });
+
+        let media =
+        (soma/lista.length).toFixed(1);
+
+        document.getElementById("mediaEstrelas")
+        .innerHTML =
+        "⭐ Média: "+media+"/5";
+
+    });
+}
+
+/* ZOOM */
+function abrirZoom(img){
+
+    document.getElementById("zoomOverlay")
+    .style.display="flex";
+
+    document.getElementById("zoomImg")
+    .src=img;
+}
+
+function fecharZoom(){
+
+    document.getElementById("zoomOverlay")
+    .style.display="none";
+}
+
+</script>
+
+</body>
+</html>
