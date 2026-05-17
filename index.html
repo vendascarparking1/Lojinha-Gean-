@@ -804,7 +804,9 @@ margin-top:10px;
 <script>
 
 /* EMAILJS */
-emailjs.init("UqrpcgQiX9oJoh6K2");
+emailjs.init({
+    publicKey:"UqrpcgQiX9oJoh6K2"
+});
 
 /* FIREBASE */
 const firebaseConfig = {
@@ -846,12 +848,13 @@ let trocasNome =
 parseInt(localStorage.getItem("trocasNome")) || 0;
 
 /* LOAD */
-window.onload = function(){
+document.addEventListener("DOMContentLoaded", function(){
 
     atualizarAreaNome();
 
     mostrarFeedbacks();
-}
+
+});
 
 /* MSG ITEM */
 function mostrarMensagem(texto){
@@ -1199,6 +1202,3 @@ function enviarFeedback(){
     document.getElementById("notaFeedback").value;
 
     if(estrelas==""){
-
-        alert("Escolha as estrelas");
-        ret
