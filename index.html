@@ -1205,6 +1205,83 @@ function enviarFeedback(){
     document.getElementById("textoFeedback").value;
 
     let estrelas =
+    document.getElementById("notaFeedback").value;
+
+    if(estrelas==""){
+
+        alert("Escolha as estrelas");
+        return;
+    }
+
+    if(texto.trim()==""){
+
+        alert("Digite algo");
+        return;
+    }
+
+    db.ref("feedbacks").push({
+
+        nome:nomeUsuario,
+        id:userID,
+        texto:texto,
+        estrelas:parseInt(estrelas),
+        data:new Date().toLocaleString()
+
+    });
+
+    if(window.emailjs){
+
+        emailjs.send(
+        "service_5wf3vf2",
+        "template_0qp2ixo",
+        {
+            nome: nomeUsuario,
+            estrelas: estrelas,
+            mensagem: texto,
+            id: userID.slice(0,6)
+        });
+
+    }
+
+    localStorage.removeItem("podeAvaliar");
+
+    document.getElementById("textoFeedback").value="";
+    document.getElementById("notaFeedback").value="";
+
+    alert("✔ Feedback enviado");
+}
+
+/* MOSTRAR FEEDBACKS */
+function mostrarFeedbacks(){
+
+    let area =
+    document.getElementById("listaFeedbacks");
+
+    db.ref("feedbacks").on("value",(snapshot)=>{
+
+        area.innerHTML="";
+
+        let dados = snapshot.val();
+
+        if(!dados){
+
+            document.getElementById("mediaEstrelas")
+            .innerHTML =
+            "⭐⭐⭐⭐⭐ (5.0)";
+
+            return;
+        }
+
+        let lista =
+        Object.values(dados).reverse();
+
+        let soma=0;
+
+        lista.forEach(f=>{
+
+            soma += f.estrelas;
+
+            let estrelas =
             "⭐".repeat(f.estrelas);
 
             area.innerHTML += `
