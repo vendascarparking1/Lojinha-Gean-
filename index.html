@@ -231,8 +231,10 @@ button:hover{
 
 <div class="container">
 
-<h1>🔥 Loja Oficial GEAN 🔥</h1>
-<h2>criado por 98 98166-6909</h2>
+<h1 id="nomeLoja">
+🔥 Loja Oficial GEAN 🔥
+</h1>
+<h2>criado por +55 98 98166-6909</h2>
 
 <div id="main" class="menu">
 
@@ -802,21 +804,11 @@ margin-top:10px;
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-
 /* EMAILJS */
-window.addEventListener("load", function(){
-
-    if(window.emailjs){
-
-        emailjs.init("UqrpcgQiX9oJoh6K2");
-
-    }
-
-});
+emailjs.init("UqrpcgQiX9oJoh6K2");
 
 /* FIREBASE */
 const firebaseConfig = {
-
   apiKey: "AIzaSyBaFGdMHOy59fJshA-Hdr6V9e92rLa2dzU",
   authDomain: "lojinhagean.firebaseapp.com",
   databaseURL: "https://lojinhagean-default-rtdb.firebaseio.com",
@@ -825,541 +817,460 @@ const firebaseConfig = {
   messagingSenderId: "572363932158",
   appId: "1:572363932158:web:f9babe712b0d848a09c0af",
   measurementId: "G-QR2K8NSVNG"
-
 };
 
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.database();
 
-/* CARRINHO */
+/* VARIÁVEIS GERAIS */
 let carrinho = [];
 
-/* ID */
+// GERAR ID ÚNICO
 let userID = localStorage.getItem("userID");
-
 if(!userID){
-
     userID = crypto.randomUUID();
-
-    localStorage.setItem("userID",userID);
+    localStorage.setItem("userID", userID);
 }
 
-/* NOME */
-let nomeUsuario =
-localStorage.getItem("nomeUsuario") || "";
+let nomeUsuario = localStorage.getItem("nomeUsuario") || "";
+let trocasNome = parseInt(localStorage.getItem("trocasNome")) || 0;
+let cargosUsuarios = JSON.parse(localStorage.getItem("cargosUsuarios")) || {};
 
-/* TROCAS */
-let trocasNome =
-parseInt(localStorage.getItem("trocasNome")) || 0;
-
-/* LOAD */
-document.addEventListener("DOMContentLoaded", function(){
-
-    atualizarAreaNome();
-
-    mostrarFeedbacks();
-
-});
-
-/* MSG ITEM */
+/* FUNÇÃO DE MENSAGEM */
 function mostrarMensagem(texto){
-
-    let msg =
-    document.getElementById("msgCarrinho");
-
+    let msg = document.getElementById("msgCarrinho");
     if(!msg) return;
-
     msg.innerHTML = texto;
-
     msg.style.display = "block";
-
-    setTimeout(()=>{
-
-        msg.style.display = "none";
-
-    },2000);
+    setTimeout(()=>{ msg.style.display = "none"; },2000);
 }
+</script>
 
-/* AREA NOME */
+<script>
+/* ======================================== */
+/* AREA NOME                               */
+/* ======================================== */
 function atualizarAreaNome(){
-
-    let areaNome =
-    document.getElementById("areaNome");
+    let areaNome = document.getElementById("areaNome");
+    if(!areaNome) return;
 
     areaNome.innerHTML = `
-
-    <div style="
-    background:#111;
-    padding:15px;
-    border-radius:15px;
-    border:2px solid #00ff88;
-    text-align:left;
-    ">
-
-    <b>👤 Nome:</b><br>
-
-    <span id="nomeAtual">
-    ${nomeUsuario || "Não definido"}
-    </span>
-
-    <br><br>
-
-    <b>🆔 ID:</b><br>
-    ${userID.slice(0,6)}
-
-    <br><br>
-
-    <b>🔄 Troca restante:</b>
-    ${1 - trocasNome}
-
-    <br><br>
-
-    ${
-        !nomeUsuario
-        ?
-        `
-        <input type="text"
-        id="nomeInput"
-        placeholder="Digite seu nome"
-        style="
-        width:100%;
-        padding:12px;
-        border:none;
-        border-radius:12px;
-        ">
-
+    <div style="background:#111;padding:15px;border-radius:15px;border:2px solid #00ff88;text-align:left;">
+        <b>👤 Nome:</b><br>
+        <span id="nomeAtual">${nomeUsuario || "Não definido"}</span>
         <br><br>
 
-        <button onclick="salvarNome()"
-        style="
-        width:100%;
-        background:#00aa88;
-        ">
-        ✔ Salvar Nome
-        </button>
-        `
-        :
-        trocasNome < 1
-        ?
-        `
-        <button onclick="trocarNome()"
-        style="
-        width:100%;
-        background:#ff8800;
-        ">
-        🔄 Trocar Nome
-        </button>
-        `
-        :
-        `
-        <div style="
-        color:red;
-        font-weight:bold;
-        ">
-        ❌ Limite de troca atingido
-        </div>
-        `
-    }
+        <b>🆔 ID:</b><br>
+        ${userID.slice(0,6)}
+        <br><br>
 
-    <br><br>
+        <b>🔄 Troca restante:</b>
+        ${1 - trocasNome}
+        <br><br>
 
-    <button class="voltar"
-    onclick="voltar()"
-    style="
-    width:100%;
-    ">
-    ⬅ Voltar
-    </button>
-
+        ${
+            !nomeUsuario
+            ? `
+                <input type="text" id="nomeInput" placeholder="Digite seu nome" style="width:100%;padding:12px;border:none;border-radius:12px;">
+                <br><br>
+                <button onclick="salvarNome()" style="width:100%;background:#00aa88;">✔ Salvar Nome</button>
+            `
+            : trocasNome < 1
+            ? `
+                <button onclick="trocarNome()" style="width:100%;background:#ff8800;">🔄 Trocar Nome</button>
+            `
+            : `
+                <div style="color:red;font-weight:bold;">❌ Limite de troca atingido</div>
+            `
+        }
+        <br><br>
+        <button class="voltar" onclick="voltar()" style="width:100%;">⬅ Voltar</button>
     </div>
-
     `;
 }
 
-/* SALVAR NOME */
+/* ======================================== */
+/* SALVAR E TROCAR NOME                    */
+/* ======================================== */
 function salvarNome(){
-
-    let nome =
-    document.getElementById("nomeInput").value;
-
-    if(nome.trim()==""){
-
+    let nome = document.getElementById("nomeInput").value;
+    if(nome.trim() == ""){
         alert("Digite um nome");
         return;
     }
-
-    localStorage.setItem("nomeUsuario",nome);
-
+    localStorage.setItem("nomeUsuario", nome);
     nomeUsuario = nome;
-
     atualizarAreaNome();
-
     mostrarMensagem("✔ Nome salvo");
 }
 
-/* TROCAR NOME */
 function trocarNome(){
-
     if(trocasNome >= 1){
-
         alert("Limite atingido");
         return;
     }
-
-    let senha = prompt(
-    "Digite a senha:"
-    );
-
+    let senha = prompt("Digite a senha:");
     if(senha !== "2010"){
-
         alert("Senha incorreta");
         return;
     }
-
-    let novoNome = prompt(
-    "Digite o novo nome:"
-    );
-
-    if(!novoNome || novoNome.trim()==""){
-
+    let novoNome = prompt("Digite o novo nome:");
+    if(!novoNome || novoNome.trim() == ""){
         alert("Nome inválido");
         return;
     }
-
     nomeUsuario = novoNome;
-
     trocasNome++;
-
-    localStorage.setItem(
-    "nomeUsuario",
-    novoNome
-    );
-
-    localStorage.setItem(
-    "trocasNome",
-    trocasNome
-    );
-
+    localStorage.setItem("nomeUsuario", novoNome);
+    localStorage.setItem("trocasNome", trocasNome);
     atualizarAreaNome();
-
     mostrarMensagem("✔ Nome alterado");
 }
 
-/* MENU */
+/* ======================================== */
+/* MENU                                    */
+/* ======================================== */
 function abrir(menu){
-
-    document.getElementById("main").style.display="none";
-
-    document.getElementById(menu).style.display="flex";
+    document.getElementById("main").style.display = "none";
+    document.getElementById(menu).style.display = "flex";
 }
-
 function voltar(){
-
-    document.querySelectorAll(".submenu")
-    .forEach(m=>{
-
-        m.style.display="none";
-    });
-
-    document.getElementById("main").style.display="flex";
+    document.querySelectorAll(".submenu").forEach(m => m.style.display = "none");
+    document.getElementById("main").style.display = "flex";
 }
 
-/* CARRINHO */
+/* ======================================== */
+/* CARRINHO                                */
+/* ======================================== */
 function adicionarCarrinho(nome,valor){
-
     carrinho.push({nome,valor});
-
     atualizarCarrinho();
-
     mostrarMensagem("🛒 "+nome+" adicionado ao carrinho");
 }
-
 function atualizarCarrinho(){
+    let lista = document.getElementById("listaCarrinho");
+    let total = document.getElementById("totalCarrinho");
+    if(!lista || !total) return;
 
-    let lista =
-    document.getElementById("listaCarrinho");
-
-    let total =
-    document.getElementById("totalCarrinho");
-
-    lista.innerHTML="";
-
-    let soma=0;
-
+    lista.innerHTML = "";
+    let soma = 0;
     carrinho.forEach((item,index)=>{
-
         soma += item.valor;
-
         lista.innerHTML += `
-
         <div class="itemCarrinho">
-
-        <span>
-        ${item.nome} - R$${item.valor}
-        </span>
-
-        <button class="removerBtn"
-        onclick="removerItem(${index})">
-        ❌
-        </button>
-
+            <span>${item.nome} - R$${item.valor}</span>
+            <button class="removerBtn" onclick="removerItem(${index})">❌</button>
         </div>
-
         `;
     });
-
-    total.innerHTML =
-    "Total: R$"+soma;
-
-    document.getElementById("contador")
-    .innerText = carrinho.length;
+    total.innerHTML = "Total: R$"+soma;
+    document.getElementById("contador").innerText = carrinho.length;
 }
-
 function removerItem(index){
-
     mostrarMensagem("❌ Item removido");
-
     carrinho.splice(index,1);
-
     atualizarCarrinho();
 }
-
 function limparCarrinho(){
-
-    carrinho=[];
-
+    carrinho = [];
     atualizarCarrinho();
-
     mostrarMensagem("🗑 Carrinho limpo");
 }
-
 function toggleCarrinho(){
-
-    let popup =
-    document.getElementById("carrinhoPopup");
-
-    popup.style.display =
-    popup.style.display=="block"
-    ? "none"
-    : "block";
+    let popup = document.getElementById("carrinhoPopup");
+    if(popup){
+        popup.style.display = popup.style.display == "block" ? "none" : "block";
+    }
 }
 
-/* COMPRAR */
+/* ======================================== */
+/* COMPRAR                                 */
+/* ======================================== */
 function comprarTudo(){
-
-    if(carrinho.length==0){
-
+    if(carrinho.length == 0){
         alert("Carrinho vazio");
         return;
     }
-
-    let numero="5598981666909";
-
-    let msg =
-    "🛒 Olá quero comprar:%0A%0A";
-
-    let soma=0;
-
-    carrinho.forEach(i=>{
-
-        msg +=
-        "• "+i.nome+
-        " - R$"+i.valor+
-        "%0A";
-
+    let numero = "5598981666909";
+    let msg = "🛒 Olá quero comprar:%0A%0A";
+    let soma = 0;
+    carrinho.forEach(i => {
+        msg += "• "+i.nome+" - R$"+i.valor+"%0A";
         soma += i.valor;
     });
-
     msg += "%0A💰 Total: R$"+soma;
-
-    window.open(
-    "https://wa.me/"+numero+"?text="+msg
-    );
-
-    localStorage.setItem(
-    "podeAvaliar",
-    "true"
-    );
+    window.open("https://wa.me/"+numero+"?text="+msg);
+    localStorage.setItem("podeAvaliar","true");
 }
 
-/* FEEDBACK */
+/* ======================================== */
+/* FEEDBACK                                */
+/* ======================================== */
 function enviarFeedback(){
-
-    let podeAvaliar =
-    localStorage.getItem("podeAvaliar");
-
+    let podeAvaliar = localStorage.getItem("podeAvaliar");
     if(!nomeUsuario){
-
         alert("Salve seu nome primeiro");
         return;
     }
-
     if(!podeAvaliar){
-
         alert("Compre algo primeiro");
         return;
     }
-
-    let texto =
-    document.getElementById("textoFeedback").value;
-
-    let estrelas =
-    document.getElementById("notaFeedback").value;
-
-    if(estrelas==""){
-
+    let texto = document.getElementById("textoFeedback").value;
+    let estrelas = document.getElementById("notaFeedback").value;
+    if(estrelas == ""){
         alert("Escolha as estrelas");
         return;
     }
-
-    if(texto.trim()==""){
-
+    if(texto.trim() == ""){
         alert("Digite algo");
         return;
     }
-
     db.ref("feedbacks").push({
-
-        nome:nomeUsuario,
-        id:userID,
-        texto:texto,
-        estrelas:parseInt(estrelas),
-        data:new Date().toLocaleString()
-
+        nome: nomeUsuario || "Cliente",
+        id: userID || "000000",
+        texto: texto || "",
+        estrelas: parseInt(estrelas) || 5,
+        data: new Date().toLocaleString()
     });
-
-    if(window.emailjs){
-
-        emailjs.send(
+    emailjs.send(
         "service_5wf3vf2",
         "template_0qp2ixo",
         {
-            nome: nomeUsuario,
+            nome: nomeUsuario || "Cliente",
             estrelas: estrelas,
             mensagem: texto,
-            id: userID.slice(0,6)
-        });
-
-    }
-
+            id: (userID || "000000").slice(0,6)
+        }
+    );
     localStorage.removeItem("podeAvaliar");
-
-    document.getElementById("textoFeedback").value="";
-    document.getElementById("notaFeedback").value="";
-
+    document.getElementById("textoFeedback").value = "";
+    document.getElementById("notaFeedback").value = "";
     alert("✔ Feedback enviado");
 }
 
-/* MOSTRAR FEEDBACKS */
+/* ======================================== */
+/* MOSTRAR FEEDBACKS                       */
+/* ======================================== */
 function mostrarFeedbacks(){
+    let area = document.getElementById("listaFeedbacks");
+    if(!area) return;
 
-    let area =
-    document.getElementById("listaFeedbacks");
-
-    db.ref("feedbacks").on("value",(snapshot)=>{
-
-        area.innerHTML="";
-
+    db.ref("feedbacks").on("value", snapshot => {
+        area.innerHTML = "";
         let dados = snapshot.val();
-
         if(!dados){
-
-            document.getElementById("mediaEstrelas")
-            .innerHTML =
-            "⭐⭐⭐⭐⭐ (5.0)";
-
+            let mediaArea = document.getElementById("mediaEstrelas");
+            if(mediaArea) mediaArea.innerHTML = "⭐⭐⭐⭐⭐ (5.0)";
             return;
         }
+        let lista = Object.values(dados).reverse();
+        let soma = 0;
+        
+        lista.forEach(f => {
+            soma += Number(f.estrelas || 5);
+            let estrelas = "⭐".repeat(Number(f.estrelas || 5));
+            let userIDFeedback = (f.id || "000000").slice(0,6);
 
-        let lista =
-        Object.values(dados).reverse();
+            // Busca cargo no Firebase
+            db.ref("usuarios/"+userIDFeedback).once("value", snap => {
+                let dadosUser = snap.val();
+                let cargo = dadosUser ? dadosUser.cargo : null;
 
-        let soma=0;
+                let fundo = "#1b1b1b";
+                let borda = "#A020F0";
+                let tag = "";
 
-        lista.forEach(f=>{
+                if(cargo == "diamante"){
+                    fundo = "linear-gradient(145deg,#001f2f,#003344)";
+                    borda = "#00ffff";
+                    tag = "💠 VIP DIMA";
+                }
+                if(cargo == "ouro"){
+                    fundo = "linear-gradient(145deg,#4a3900,#7a5b00)";
+                    borda = "gold";
+                    tag = "👑 OURO";
+                }
 
-            soma += f.estrelas;
-
-            let estrelas =
-            "⭐".repeat(f.estrelas);
-
-            area.innerHTML += `
-
-            <div style="
-            background:#1b1b1b;
-            border-radius:20px;
-            padding:15px;
-            margin-top:15px;
-            border:2px solid #A020F0;
-            ">
-
-            <b style="font-size:18px;">
-            👤 ${f.nome}
-            </b>
-
-            <br>
-
-            <small style="color:#00ff88;">
-            🆔 ${f.id.slice(0,6)}
-            </small>
-
-            <br><br>
-
-            <span style="
-            color:gold;
-            font-size:22px;
-            ">
-            ${estrelas}
-            </span>
-
-            <br><br>
-
-            <div style="
-            color:#ddd;
-            line-height:1.5;
-            ">
-            ${f.texto}
-            </div>
-
-            <br>
-
-            <small style="color:#999;">
-            ${f.data}
-            </small>
-
-            </div>
-
-            `;
+                // Cria o card
+                let card = document.createElement("div");
+                card.style.background = fundo;
+                card.style.borderRadius = "20px";
+                card.style.padding = "15px";
+                card.style.marginTop = "15px";
+                card.style.border = "2px solid "+borda;
+                card.innerHTML = `
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+                        <div>
+                            <div style="font-size:18px;font-weight:bold;color:${borda};">👤 ${f.nome || "Cliente"}</div>
+                            <div style="color:#00ff88;font-size:13px;margin-top:3px;">🆔 ${userIDFeedback}</div>
+                        </div>
+                        ${tag ? `<div style="background:${borda};color:black;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:bold;">${tag}</div>` : ""}
+                    </div>
+                    <div style="color:gold;font-size:22px;margin-bottom:12px;">${estrelas}</div>
+                    <div style="color:#ddd;line-height:1.5;word-break:break-word;">${f.texto || ""}</div>
+                    <div style="margin-top:12px;color:#999;font-size:12px;">${f.data || ""}</div>
+                `;
+                area.appendChild(card);
+            });
         });
-
-        let media =
-        (soma/lista.length).toFixed(1);
-
-        document.getElementById("mediaEstrelas")
-        .innerHTML =
-        "⭐ Média: "+media+"/5";
-
+        
+        // Média
+        let media = (soma / lista.length).toFixed(1);
+        let mediaArea = document.getElementById("mediaEstrelas");
+        if(mediaArea) mediaArea.innerHTML = "⭐ Média: "+media+"/5";
     });
 }
 
-/* ZOOM */
-function abrirZoom(img){
+/* ======================================== */
+/* MOSTRAR FEEDBACKS                       */
+/* ======================================== */
+function mostrarFeedbacks(){
+    let area = document.getElementById("listaFeedbacks");
+    if(!area) return;
 
-    document.getElementById("zoomOverlay")
-    .style.display="flex";
+    db.ref("feedbacks").on("value", snapshot => {
+        area.innerHTML = "";
+        let dados = snapshot.val();
+        if(!dados){
+            let mediaArea = document.getElementById("mediaEstrelas");
+            if(mediaArea) mediaArea.innerHTML = "⭐⭐⭐⭐⭐ (5.0)";
+            return;
+        }
+        let lista = Object.values(dados).reverse();
+        let soma = 0;
+        
+        lista.forEach(f => {
+            soma += Number(f.estrelas || 5);
+            let estrelas = "⭐".repeat(Number(f.estrelas || 5));
+            let userIDFeedback = (f.id || "000000").slice(0,6);
 
-    document.getElementById("zoomImg")
-    .src=img;
+            // Busca cargo no Firebase
+            db.ref("usuarios/"+userIDFeedback).once("value", snap => {
+                let dadosUser = snap.val();
+                let cargo = dadosUser ? dadosUser.cargo : null;
+
+                let fundo = "#1b1b1b";
+                let borda = "#A020F0";
+                let tag = "";
+
+                if(cargo == "diamante"){
+                    fundo = "linear-gradient(145deg,#001f2f,#003344)";
+                    borda = "#00ffff";
+                    tag = "💠 VIP DIMA";
+                }
+                if(cargo == "ouro"){
+                    fundo = "linear-gradient(145deg,#4a3900,#7a5b00)";
+                    borda = "gold";
+                    tag = "👑 OURO";
+                }
+
+                // Cria o card
+                let card = document.createElement("div");
+                card.style.background = fundo;
+                card.style.borderRadius = "20px";
+                card.style.padding = "15px";
+                card.style.marginTop = "15px";
+                card.style.border = "2px solid "+borda;
+                card.innerHTML = `
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+                        <div>
+                            <div style="font-size:18px;font-weight:bold;color:${borda};">👤 ${f.nome || "Cliente"}</div>
+                            <div style="color:#00ff88;font-size:13px;margin-top:3px;">🆔 ${userIDFeedback}</div>
+                        </div>
+                        ${tag ? `<div style="background:${borda};color:black;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:bold;">${tag}</div>` : ""}
+                    </div>
+                    <div style="color:gold;font-size:22px;margin-bottom:12px;">${estrelas}</div>
+                    <div style="color:#ddd;line-height:1.5;word-break:break-word;">${f.texto || ""}</div>
+                    <div style="margin-top:12px;color:#999;font-size:12px;">${f.data || ""}</div>
+                `;
+                area.appendChild(card);
+            });
+        });
+        
+        // Média
+        let media = (soma / lista.length).toFixed(1);
+        let mediaArea = document.getElementById("mediaEstrelas");
+        if(mediaArea) mediaArea.innerHTML = "⭐ Média: "+media+"/5";
+    });
 }
 
-function fecharZoom(){
-
-    document.getElementById("zoomOverlay")
-    .style.display="none";
+/* ======================================== */
+/* SISTEMA ADM                             */
+/* ======================================== */
+function abrirPainelADM(){
+    if(document.getElementById("painelADM")) return;
+    let painel = document.createElement("div");
+    painel.id = "painelADM";
+    painel.innerHTML = `
+    <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:400px;background:#111;border:3px solid #00ff88;border-radius:25px;padding:20px;z-index:999999999;">
+        <h2 style="color:#00ff88;text-align:center;">🔥 PAINEL ADM</h2>
+        <input id="idUsuarioVIP" placeholder="ID do usuário" style="width:100%;padding:15px;border:none;border-radius:15px;margin-bottom:15px;box-sizing:border-box;">
+        <button onclick="darDiamante()" style="width:100%;background:#00ffff;color:black;padding:15px;border:none;border-radius:15px;">💠 DAR VIP DIMA</button>
+        <br><br>
+        <button onclick="darOuro()" style="width:100%;background:gold;color:black;padding:15px;border:none;border-radius:15px;">👑 DAR OURO</button>
+        <br><br>
+        <button onclick="fecharADM()" style="width:100%;background:red;color:white;padding:15px;border:none;border-radius:15px;">❌ FECHAR</button>
+    </div>
+    `;
+    document.body.appendChild(painel);
+}
+function fecharADM(){
+    let painel = document.getElementById("painelADM");
+    if(painel) painel.remove();
 }
 
+// SALVAR NO FIREBASE
+function darDiamante(){
+    let id = document.getElementById("idUsuarioVIP").value;
+    if(!id){ alert("Digite o ID"); return; }
+    
+    db.ref("usuarios/"+id).set({
+        cargo: "diamante"
+    });
+    
+    alert("💠 VIP DIMA enviado e salvo!");
+}
+function darOuro(){
+    let id = document.getElementById("idUsuarioVIP").value;
+    if(!id){ alert("Digite o ID"); return; }
+    
+    db.ref("usuarios/"+id).set({
+        cargo: "ouro"
+    });
+    
+    alert("👑 OURO enviado e salvo!");
+}
+
+
+/* ======================================== */
+/* INICIALIZAÇÃO                           */
+/* ======================================== */
+window.onload = function(){
+    atualizarAreaNome();
+    mostrarFeedbacks();
+
+    // Botão escondido ADM
+    const nomeLoja = document.getElementById("nomeLoja");
+    if(!nomeLoja) return;
+
+    let cliquesADM = 0;
+    let ultimoCliqueADM = 0;
+
+    nomeLoja.onclick = function(){
+        let agora = Date.now();
+        if(agora - ultimoCliqueADM > 1500) cliquesADM = 0;
+        ultimoCliqueADM = agora;
+        cliquesADM++
+        if(cliquesADM >= 5){
+            cliquesADM = 0;
+            let senha = prompt("Senha ADM:");
+            if(senha === "2010"){
+                abrirPainelADM();
+            }else{
+                alert("Senha incorreta");
+            }
+        }
+    };
+};
 </script>
-
-</body>
-</html>
