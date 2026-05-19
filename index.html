@@ -1412,4 +1412,26 @@ window.onload = function(){
         }
     };
 };
+
+/* ======================================== */
+/* ZOOM FOTO                               */
+/* ======================================== */
+function abrirZoom(img){
+    let overlay = document.getElementById("zoomOverlay");
+    let zoomImg = document.getElementById("zoomImg");
+
+    if(!overlay || !zoomImg) return;
+
+    zoomImg.src = img;
+    overlay.style.display = "flex";
+}
+
+function fecharZoom(){
+    let overlay = document.getElementById("zoomOverlay");
+
+    if(!overlay) return;
+
+    overlay.style.display = "none";
+}
+
 </script>
