@@ -7,6 +7,7 @@
 
 <style>
 
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
@@ -14,6 +15,75 @@ body{
     background-size:cover;
     color:white;
     text-align:center;
+}
+
+/* =============================== */
+/* NOME DOURADO PULSANDO */
+/* =============================== */
+
+.nome-ouro {
+  color: #FFD700;
+  font-weight: bold;
+  text-shadow: 0 0 5px #FFD700, 0 0 10px #FFB800, 0 0 20px #FF8C00;
+  animation: pulseOuro 1.5s infinite;
+}
+
+@keyframes pulseOuro {
+  0% {
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFB800;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 15px #FFD700, 0 0 30px #FFB800, 0 0 40px #FF8C00;
+    transform: scale(1.05);
+  }
+  100% {
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFB800;
+    transform: scale(1);
+  }
+}
+
+/* OURO BRILHANTE */
+.card-ouro {
+  background: linear-gradient(145deg,#4a3900,#7a5b00) !important;
+  border: 2px solid gold !important;
+  box-shadow: 0 0 15px gold, 0 0 30px rgba(255,215,0,0.6);
+  animation: brilhoOuro 2s infinite;
+}
+
+@keyframes brilhoOuro {
+  0% { box-shadow: 0 0 10px gold; }
+  50% { box-shadow: 0 0 25px gold; }
+  100% { box-shadow: 0 0 10px gold; }
+}
+
+/* sparkle ouro */
+.sparkle-ouro {
+  position: relative;
+  color: #FFD700;
+  text-shadow: 0 0 5px #FFD700, 0 0 10px #FFB800, 0 0 20px #FF8C00;
+  font-weight: bold;
+  animation: glowPulse 1.2s infinite;
+}
+
+@keyframes glowPulse {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.6); }
+  100% { filter: brightness(1); }
+}
+
+/* nome ouro pulsando */
+.nome-ouro {
+  color: #FFD700;
+  font-weight: bold;
+  text-shadow: 0 0 5px #FFD700, 0 0 10px #FFB800, 0 0 20px #FF8C00;
+  animation: pulseOuro 1.5s infinite;
+}
+
+@keyframes pulseOuro {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 .container{
@@ -258,7 +328,7 @@ button:hover{
 <div class="tagProduto">🔥 Popular</div>
 <div class="tituloProduto">💰 10k Golds</div>
 <div class="descProduto">Entrega rápida</div>
-<div class="precoProduto">R$1</div>
+<div class="precoProduto">R$1,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('10k Golds',1)">
 🛒 Adicionar ao Carrinho
@@ -267,7 +337,7 @@ onclick="adicionarCarrinho('10k Golds',1)">
 
 <div class="cardProduto">
 <div class="tituloProduto">💰 20k Golds</div>
-<div class="precoProduto">R$2</div>
+<div class="precoProduto">R$2,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('20k Golds',2)">
 🛒 Adicionar ao Carrinho
@@ -276,7 +346,7 @@ onclick="adicionarCarrinho('20k Golds',2)">
 
 <div class="cardProduto">
 <div class="tituloProduto">💰 30k Golds</div>
-<div class="precoProduto">R$3</div>
+<div class="precoProduto">R$3,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('30k Golds',3)">
 🛒 Adicionar ao Carrinho
@@ -285,7 +355,7 @@ onclick="adicionarCarrinho('30k Golds',3)">
 
 <div class="cardProduto">
 <div class="tituloProduto">💰 40k Golds</div>
-<div class="precoProduto">R$4</div>
+<div class="precoProduto">R$4,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('40k Golds',4)">
 🛒 Adicionar ao Carrinho
@@ -294,7 +364,7 @@ onclick="adicionarCarrinho('40k Golds',4)">
 
 <div class="cardProduto">
 <div class="tituloProduto">💰 50k Golds</div>
-<div class="precoProduto">R$5</div>
+<div class="precoProduto">R$5,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('50k Golds',5)">
 🛒 Adicionar ao Carrinho
@@ -303,7 +373,7 @@ onclick="adicionarCarrinho('50k Golds',5)">
 
 <div class="cardProduto">
 <div class="tituloProduto">💰 100k Golds</div>
-<div class="precoProduto">R$6</div>
+<div class="precoProduto">R$6,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('100k Golds',6)">
 🛒 Adicionar ao Carrinho
@@ -312,7 +382,7 @@ onclick="adicionarCarrinho('100k Golds',6)">
 
 <div class="cardProduto">
 <div class="tituloProduto">💰 250k Golds</div>
-<div class="precoProduto">R$7</div>
+<div class="precoProduto">R$7,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('250k Golds',7)">
 🛒 Adicionar ao Carrinho
@@ -321,7 +391,7 @@ onclick="adicionarCarrinho('250k Golds',7)">
 
 <div class="cardProduto">
 <div class="tituloProduto">💰 500k Golds</div>
-<div class="precoProduto">R$8</div>
+<div class="precoProduto">R$8,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('500k Golds',8)">
 🛒 Adicionar ao Carrinho
@@ -343,7 +413,7 @@ onclick="adicionarCarrinho('500k Golds',8)">
 <div class="cardProduto">
 <div class="tituloProduto">🚚F-650</div>
 <div class="tagProduto">🔥 Raro</div>
-<div class="precoProduto">R$3</div>
+<div class="precoProduto">R$3,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('La Ferrari',3)">
 🛒 Adicionar ao Carrinho
@@ -353,7 +423,7 @@ onclick="adicionarCarrinho('La Ferrari',3)">
 <div class="cardProduto">
 <div class="tituloProduto">🚙SW4</div>
 <div class="tagProduto">🔥 Raro</div>
-<div class="precoProduto">R$3</div>
+<div class="precoProduto">R$3,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('sw4',3)">
 🛒 Adicionar ao Carrinho
@@ -363,7 +433,7 @@ onclick="adicionarCarrinho('sw4',3)">
 
 <div class="cardProduto">
 <div class="tituloProduto">🚗 Motorhome Plot</div>
-<div class="precoProduto">R$3</div>
+<div class="precoProduto">R$3,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('Motorhome Plot',3)">
 🛒 Adicionar ao Carrinho
@@ -372,7 +442,7 @@ onclick="adicionarCarrinho('Motorhome Plot',3)">
 
 <div class="cardProduto">
 <div class="tituloProduto">🚗 la Ferrari</div>
-<div class="precoProduto">R$3</div>
+<div class="precoProduto">R$3,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('la ferari Plot',3)">
 🛒 Adicionar ao Carrinho
@@ -381,7 +451,7 @@ onclick="adicionarCarrinho('la ferari Plot',3)">
 
 <div class="cardProduto">
 <div class="tituloProduto">🚗 Jeep gladiador</div>
-<div class="precoProduto">R$3</div>
+<div class="precoProduto">R$3,00</div>
 <button class="btnComprar"
 onclick="adicionarCarrinho('jeep gladiador',3)">
 🛒 Adicionar ao Carrinho
@@ -417,7 +487,7 @@ onclick="adicionarCarrinho('jeep gladiador',3)">
 </div>
 
 <div class="precoProduto">
-R$5
+R$5,00
 </div>
 
 <button class="btnComprar"
@@ -453,7 +523,7 @@ onclick="adicionarCarrinho('Conta 1',5)">
 </div>
 
 <div class="precoProduto">
-R$15
+R$15,00
 </div>
 
 <button class="btnComprar"
@@ -482,7 +552,7 @@ onclick="adicionarCarrinho('Conta 2',15)">
 </div>
 
 <div class="precoProduto">
-R$5
+R$5,00
 </div>
 
 <button class="btnComprar"
@@ -519,7 +589,7 @@ onclick="adicionarCarrinho('King Rank',5)">
 </div>
 
 <div class="precoProduto">
-R$7
+R$7,00
 </div>
 
 <button class="btnComprar"
@@ -560,7 +630,7 @@ onclick="adicionarCarrinho('Combo Completo',7)">
 </div>
 
 <div class="precoProduto">
-R$10
+R$10,00
 </div>
 
 <button class="btnComprar"
@@ -1123,7 +1193,7 @@ function mostrarFeedbacks(){
 }
 
 /* ======================================== */
-/* MOSTRAR FEEDBACKS                       */
+/* MOSTRAR FEEDBACKS (VIP FINAL)           */
 /* ======================================== */
 function mostrarFeedbacks(){
     let area = document.getElementById("listaFeedbacks");
@@ -1132,20 +1202,21 @@ function mostrarFeedbacks(){
     db.ref("feedbacks").on("value", snapshot => {
         area.innerHTML = "";
         let dados = snapshot.val();
+
         if(!dados){
             let mediaArea = document.getElementById("mediaEstrelas");
             if(mediaArea) mediaArea.innerHTML = "⭐⭐⭐⭐⭐ (5.0)";
             return;
         }
+
         let lista = Object.values(dados).reverse();
         let soma = 0;
-        
+
         lista.forEach(f => {
             soma += Number(f.estrelas || 5);
             let estrelas = "⭐".repeat(Number(f.estrelas || 5));
             let userIDFeedback = (f.id || "000000").slice(0,6);
 
-            // Busca cargo no Firebase
             db.ref("usuarios/"+userIDFeedback).once("value", snap => {
                 let dadosUser = snap.val();
                 let cargo = dadosUser ? dadosUser.cargo : null;
@@ -1154,41 +1225,109 @@ function mostrarFeedbacks(){
                 let borda = "#A020F0";
                 let tag = "";
 
+                // cargos
                 if(cargo == "diamante"){
                     fundo = "linear-gradient(145deg,#001f2f,#003344)";
                     borda = "#00ffff";
                     tag = "💠 VIP DIMA";
                 }
+
                 if(cargo == "ouro"){
                     fundo = "linear-gradient(145deg,#4a3900,#7a5b00)";
                     borda = "gold";
                     tag = "👑 OURO";
                 }
 
-                // Cria o card
                 let card = document.createElement("div");
-                card.style.background = fundo;
                 card.style.borderRadius = "20px";
                 card.style.padding = "15px";
                 card.style.marginTop = "15px";
                 card.style.border = "2px solid "+borda;
+                card.style.background = fundo;
+
+                // efeito ouro
+                if(cargo == "ouro"){
+                    card.classList.add("card-ouro");
+                }
+
+                // ⭐ estrelas
+                let estrelasHTML = "";
+
+                if(cargo == "ouro"){
+                    estrelasHTML = `
+                    <div class="sparkle-ouro" style="
+                        font-size:22px;
+                        margin-bottom:12px;
+                        display:inline-block;
+                    ">
+                        ${estrelas}
+                    </div>`;
+                }else{
+                    estrelasHTML = `
+                    <div style="
+                        color:#FFD700;
+                        font-size:22px;
+                        margin-bottom:12px;
+                        text-shadow:0 0 5px #FFD700;
+                    ">
+                        ${estrelas}
+                    </div>`;
+                }
+
+                // nome (ouro pulsando)
+                let nomeHTML = "";
+
+                if(cargo == "ouro"){
+                    nomeHTML = `
+                    <div class="nome-ouro" style="font-size:18px;font-weight:bold;">
+                        👤 ${f.nome || "Cliente"}
+                    </div>`;
+                }else{
+                    nomeHTML = `
+                    <div style="font-size:18px;font-weight:bold;color:${borda};">
+                        👤 ${f.nome || "Cliente"}
+                    </div>`;
+                }
+
                 card.innerHTML = `
                     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
                         <div>
-                            <div style="font-size:18px;font-weight:bold;color:${borda};">👤 ${f.nome || "Cliente"}</div>
-                            <div style="color:#00ff88;font-size:13px;margin-top:3px;">🆔 ${userIDFeedback}</div>
+                            ${nomeHTML}
+                            <div style="color:#00ff88;font-size:13px;margin-top:3px;">
+                                🆔 ${userIDFeedback}
+                            </div>
                         </div>
-                        ${tag ? `<div style="background:${borda};color:black;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:bold;">${tag}</div>` : ""}
+
+                        ${tag ? `
+                        <div style="background:${borda};color:black;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:bold;">
+                            ${tag}
+                        </div>` : ""}
                     </div>
-                    <div style="color:gold;font-size:22px;margin-bottom:12px;">${estrelas}</div>
-                    <div style="color:#ddd;line-height:1.5;word-break:break-word;">${f.texto || ""}</div>
-                    <div style="margin-top:12px;color:#999;font-size:12px;">${f.data || ""}</div>
+
+                    ${estrelasHTML}
+
+                    <!-- comentário integrado estilo card -->
+                    <div style="
+                        color:rgba(255,255,255,0.9);
+                        line-height:1.5;
+                        word-break:break-word;
+                        background:rgba(0,0,0,0.15);
+                        padding:10px;
+                        border-radius:12px;
+                        backdrop-filter: blur(2px);
+                    ">
+                        ${f.texto || ""}
+                    </div>
+
+                    <div style="margin-top:12px;color:#999;font-size:12px;">
+                        ${f.data || ""}
+                    </div>
                 `;
+
                 area.appendChild(card);
             });
         });
-        
-        // Média
+
         let media = (soma / lista.length).toFixed(1);
         let mediaArea = document.getElementById("mediaEstrelas");
         if(mediaArea) mediaArea.innerHTML = "⭐ Média: "+media+"/5";
